@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+	<th:block th:include="include :: header('图表组合')" />
+	<th:block th:include="include :: header('百度ECharts')" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h4 class="m-b-md">总人数</h4>
+					<h2 class="text-navy" th:text="${totalUserNum}"></h2>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content ">
+					<h4 class="m-b-md">已认证人数</h4>
+					<h2 class="text-primary" th:text="${certUserNum}"></h2>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h4 class="m-b-md">未认证人数</h4>
+					<h2 class="text-success" th:text="${unCertUserNum}"></h2>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h4 class="m-b-md">日活</h4>
+					<h2 class="text-success" th:text="${todayMeasureNum}"></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<div class="ibox">
+				<div class="ibox-content">
+					<h4 class="m-b-md">总积分</h4>
+					<h2 class="text-navy" th:text="${totalScore}"></h2>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="ibox">
+				<div class="ibox-content ">
+					<h4 class="m-b-md">总活跃值</h4>
+					<h2 class="text-primary" th:text="${totalActiveValue}"></h2>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4">
+			<div class="ibox">
+				<div class="ibox-content ">
+					<h4 class="m-b-md">总手续费</h4>
+					<h2 class="text-primary" th:text="${platformCharge}"></h2>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>各城市实名人数</h5>
+					<div class="ibox-tools">
+						<select class="form-control" name="province" id="province">
+							<option th:each="item : ${provinceList}" th:value="${item.province}" th:text="${item.areaName}" ></option>
+						</select>
+					</div>
+				</div>
+				<div class="ibox-content">
+					<div class="echarts" id="echarts-bar-chart"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--<div class="row">
+		<div class="col-sm-12">
+			<div class="ibox float-e-margins">
+				<div class="ibox-title">
+					<h5>各阶段订单分析</h5>
+				</div>
+				<div class="ibox-content">
+					<div class="echarts" id="echarts-pie-chart"></div>
+				</div>
+			</div>
+		</div>
+	</div>-->
+
+</div>
+<th:block th:include="include :: footer" />
+<th:block th:include="include :: peity-js" />
+<th:block th:include="include :: sparkline-js" />
+<th:block th:include="include :: echarts-js" />
+<script type="text/javascript" th:inline="javascript">
+	// 初始化图标
+	initChart();
+	// 监听下拉框变化
+	$(function() {
+		$("#province").change(function () {
+			initChart();
+		})
+	});
+	function initChart() {
+		var province = $("#province").val();
+		$.operate.post("/count/getPerCityUserNum",{province:province},function (result) {
+			if(result.code == 0){
+				console.log(result.data);
+				generateChart(result.data);
+			}else{
+				$.modal.alertError(result.msg);
+			}
+		})
+	}
+
+	// 生成图表
+	function generateChart(userNumList) {
+		var xAxis = [];
+		var series = [];
+		for(var i in userNumList) {
+			xAxis.push(userNumList[i].areaName);
+			series.push(userNumList[i].userNum);
+		};
+
+		var barChart = echarts.init(document.getElementById("echarts-bar-chart"));
+		var baroption = {
+			title : {
+				text: '各城市实名人数'
+			},
+			tooltip : {
+				trigger: 'axis'
+			},
+			grid:{
+				x:30,
+				x2:40,
+				y2:24
+			},
+			calculable : true,
+			xAxis : [
+				{
+					type : 'category',
+					data : xAxis
+				}
+			],
+			yAxis : [
+				{
+					type : 'value'
+				}
+			],
+			series : [
+				{
+					name:'实名人数',
+					type:'bar',
+					barWidth : 25,
+					data:series,
+					markPoint : {
+						data : [
+							{type : 'max', name: '最大值'},
+							{type : 'min', name: '最小值'}
+						]
+					}
+				}
+			]
+		};
+		barChart.setOption(baroption);
+		window.onresize = barChart.resize;
+	}
+</script>
+</body>
+</html>

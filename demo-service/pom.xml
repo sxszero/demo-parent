@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>demo-service</artifactId>
+    <packaging>pom</packaging>
+    <description>业务逻辑层</description>
+
+    <parent>
+        <artifactId>demo-parent</artifactId>
+        <groupId>com.zhwl</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <!--核心工具类-->
+        <dependency>
+            <groupId>com.zhwl</groupId>
+            <artifactId>demo-common-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!--核心实体类-->
+        <dependency>
+            <groupId>com.zhwl</groupId>
+            <artifactId>demo-entity-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
+    <modules>
+        <!--业务逻辑-->
+        <module>demo-service-system</module>
+        <!--业务逻辑-->
+        <module>demo-service-logic</module>
+    </modules>
+
+    <developers>
+        <developer>
+            <id>01</id>
+            <name>yxs</name>
+            <email>yangxshn@126.com</email>
+        </developer>
+    </developers>
+</project>

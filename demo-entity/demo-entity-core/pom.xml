@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>demo-entity-core</artifactId>
+    <description>实体类</description>
+
+    <parent>
+        <artifactId>demo-entity</artifactId>
+        <groupId>com.zhwl</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <dependencies>
+        <!--核心工具类-->
+        <dependency>
+            <groupId>com.zhwl</groupId>
+            <artifactId>demo-common-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${swagger.version}</version>
+        </dependency>
+    </dependencies>
+
+    <developers>
+        <developer>
+            <id>01</id>
+            <name>yxs</name>
+            <email>yangxshn@126.com</email>
+        </developer>
+    </developers>
+</project>

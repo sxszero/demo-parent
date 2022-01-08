@@ -1,0 +1,6 @@
+# Project exclude paths
+/demo-common/demo-common-core/target/
+/demo-entity/demo-entity-core/target/
+/demo-portal/demo-portal-admin/target/
+/demo-service/demo-service-logic/target/
+/demo-service/demo-service-system/target/
