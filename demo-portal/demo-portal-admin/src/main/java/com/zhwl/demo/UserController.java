@@ -70,4 +70,9 @@ public class UserController extends BaseController {
         ExcelUtil<User> util = new ExcelUtil<User>(User.class);
         return util.exportExcel(list, "用户管理");
     }
+
+    @GetMapping("/add")
+    public String add(){
+        return prefix + "/add";
+    }
 }

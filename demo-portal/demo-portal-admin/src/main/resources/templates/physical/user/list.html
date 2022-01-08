@@ -25,6 +25,9 @@
 				</div>
 				
 		        <div class="btn-group-sm" id="toolbar" role="group">
+					<a class="btn btn-success" onclick="$.operate.addTab()" shiro:hasPermission="user:add">
+						<i class="fa fa-plus"></i> 新增
+					</a>
 		            <a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="user:export">
 			            <i class="fa fa-download"></i> 导出
 			        </a>
@@ -62,9 +65,11 @@
 			queryUserList();
 		});
 
+		//发送请求
 		function queryUserList() {
 		    var options = {
 		        url: prefix + "/pageGetUserList",
+				createUrl: prefix + "/add",
 		        exportUrl: prefix + "/exportUser",
 		        modalName: "用户管理",
 		        columns: [
@@ -106,9 +111,6 @@
 				</font>
 			</div>
 		</form>
-	</script>
-	<script>
-		var prefix = ctx + "user";
 	</script>
 </body>
 </html>
