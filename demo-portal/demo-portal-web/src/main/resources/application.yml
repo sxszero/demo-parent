@@ -16,6 +16,7 @@ mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+
 swagger:
   base-package:  com.zhwl.physical.controller
   title: 趣体检

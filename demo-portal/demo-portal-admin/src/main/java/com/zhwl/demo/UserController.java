@@ -10,6 +10,7 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,5 +75,13 @@ public class UserController extends BaseController {
     @GetMapping("/add")
     public String add(){
         return prefix + "/add";
+    }
+
+    @RequiresPermissions("user:add")
+    @PostMapping("/add")
+    @ResponseBody
+    public AjaxResult addUser(@Validated User user){
+
+        return toAjax(userService.insertUser(user));
     }
 }

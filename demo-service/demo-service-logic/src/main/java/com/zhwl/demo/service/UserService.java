@@ -19,4 +19,14 @@ public interface UserService {
      * @return 用户列表
      */
     List<User> pageGetUserList(String username);
+
+    /**
+     *
+     * @desc  插入用户信息
+     * @author Administrator
+     * @date 2022-01-10 09:06:08
+     * @param user
+     * @return 成功信息
+     **/
+    int insertUser(User user);
 }

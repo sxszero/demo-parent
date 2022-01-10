@@ -26,4 +26,9 @@ public class UserServiceImpl extends BaseService implements UserService {
         List<User> userList = userMapper.pageGetUserList(username);
         return userList;
     }
+
+    @Override
+    public int insertUser(User user) {
+        return userMapper.insertUser(user);
+    }
 }

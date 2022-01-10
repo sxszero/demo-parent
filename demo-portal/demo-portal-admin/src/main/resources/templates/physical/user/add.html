@@ -17,7 +17,7 @@
 <div class="main-content">
     <form id="form-user-add" class="form-horizontal" >
         <input name="deptId" type="hidden" id="treeId"/>
-        <h4 class="form-header h4">用户列表添加</h4>
+        <h4 class="form-header h4">用户列表新增</h4>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group" >
@@ -50,7 +50,7 @@
 <th:block th:include="include :: footer" />
 <th:block th:include="include :: select2-js" />
 <script>
-    var prefix = ctx + "/user";
+    var prefix = ctx + "user";
 
     $("#form-user-add").validate({
         onkeyup: false,
@@ -116,7 +116,8 @@
     }
 
     //提交表单
-    function submithandler(){
+    function submitHandler(){
+        console.log('1111');
         var username = $("input[name='username']").val();
         var unionid = $("input[name='unionid']").val();
         var data = $("form-user-add").serializeArray();

@@ -28,4 +28,13 @@ public interface UserMapper {
      */
     @SelectProvider(type = UserMapperProvider.class,method = "pageGetUserList")
     List<User> pageGetUserList(@Param("username") String username);
+
+    /**
+     * @desc   插入用户信息
+     * @author
+     * @date 2022-01-10 09:07:52
+     * @param user
+     * @return
+     **/
+    int insertUser(User user);
 }
