@@ -4,6 +4,8 @@ import com.zhwl.demo.common.base.BaseService;
 import com.zhwl.demo.mapper.UserMapper;
 import com.zhwl.demo.po.User;
 import com.zhwl.demo.service.UserService;
+import com.zhwl.demo.utils.StringUtils;
+import com.zhwl.ruoyi.exception.BusinessException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,5 +32,13 @@ public class UserServiceImpl extends BaseService implements UserService {
     @Override
     public int insertUser(User user) {
         return userMapper.insertUser(user);
+    }
+
+    @Override
+    public String importUser(List<User> userList, boolean updateSupport, String operName) {
+        if(StringUtils.isNotNull(userList) || userList.size() == 0){
+            throw new BusinessException("导入数据不能为空");
+        }
+        return null;
     }
 }

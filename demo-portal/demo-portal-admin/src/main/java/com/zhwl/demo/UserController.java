@@ -3,6 +3,7 @@ package com.zhwl.demo;
 import com.zhwl.demo.base.AjaxResult;
 import com.zhwl.demo.po.User;
 import com.zhwl.demo.service.UserService;
+import com.zhwl.demo.utils.ShiroUtils;
 import com.zhwl.ruoyi.common.core.controller.BaseController;
 import com.zhwl.ruoyi.common.core.page.TableDataInfo;
 import com.zhwl.ruoyi.common.utils.poi.ExcelUtil;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -72,16 +74,48 @@ public class UserController extends BaseController {
         return util.exportExcel(list, "用户管理");
     }
 
+    /**
+     * @desc  跳转新增用户tap
+     * @author Administrator
+     * @date 2022-01-11 15:01:04
+     * @return
+     **/
     @GetMapping("/add")
     public String add(){
         return prefix + "/add";
     }
 
+    /**
+     *
+     * @desc  新增用户信息
+     * @author Administrator
+     * @date 2022-01-11 14:51:35
+     * @return
+     **/
     @RequiresPermissions("user:add")
     @PostMapping("/add")
     @ResponseBody
     public AjaxResult addUser(@Validated User user){
 
         return toAjax(userService.insertUser(user));
+    }
+
+    @RequiresPermissions("user:import")
+    @PostMapping("importUser")
+    @ResponseBody
+    public AjaxResult importUser(MultipartFile file,boolean updateSupport)throws Exception{
+        ExcelUtil<User> util = new ExcelUtil<>(User.class);
+        List<User> userList = util.importExcel(file.getInputStream());
+        String operName = ShiroUtils.getUser().getUsername();
+        String message = userService.importUser(userList, updateSupport, operName);
+        return AjaxResult.success(message);
+    }
+
+    @RequiresPermissions("user:list:view")
+    @GetMapping("/importTemplate")
+    @ResponseBody
+    public AjaxResult importTemplate(){
+        ExcelUtil<User> userExcelUtil = new ExcelUtil<>(User.class);
+        return userExcelUtil.importTemplateExcel("用户信息");
     }
 }

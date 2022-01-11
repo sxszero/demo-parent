@@ -29,4 +29,15 @@ public interface UserService {
      * @return 成功信息
      **/
     int insertUser(User user);
+
+    /**
+     * @desc   导入用户数据
+     * @author Administrator
+     * @date 2022-01-11 16:56:58
+     * @param userList 用户列表数据
+     * @param updateSupport 是否支持更新，如果已存在，则更新数据
+     * @param operName 操作用户
+     * @return
+     **/
+    String importUser(List<User> userList, boolean updateSupport, String operName);
 }

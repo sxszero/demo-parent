@@ -1,4 +1,4 @@
-package com.zhwl.ruoyi.common.exception;
+package com.zhwl.ruoyi.exception;
 
 /**
  * 业务异常

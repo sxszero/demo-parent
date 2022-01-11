@@ -6,7 +6,7 @@ import com.zhwl.ruoyi.common.core.page.PageDomain;
 import com.zhwl.ruoyi.common.core.page.TableDataInfo;
 import com.zhwl.ruoyi.common.core.page.TableSupport;
 import com.zhwl.ruoyi.common.core.text.Convert;
-import com.zhwl.ruoyi.common.exception.BusinessException;
+import com.zhwl.ruoyi.exception.BusinessException;
 import com.zhwl.ruoyi.common.utils.StringUtils;
 import com.zhwl.ruoyi.common.utils.poi.ExcelUtil;
 import com.zhwl.ruoyi.controller.demo.domain.CustomerModel;

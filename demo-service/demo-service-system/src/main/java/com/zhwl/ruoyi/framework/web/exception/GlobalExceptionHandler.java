@@ -1,7 +1,7 @@
 package com.zhwl.ruoyi.framework.web.exception;
 
 import com.zhwl.demo.base.AjaxResult;
-import com.zhwl.ruoyi.common.exception.BusinessException;
+import com.zhwl.ruoyi.exception.BusinessException;
 import com.zhwl.ruoyi.common.exception.DemoModeException;
 import com.zhwl.ruoyi.common.utils.ServletUtils;
 import com.zhwl.ruoyi.common.utils.security.PermissionUtils;

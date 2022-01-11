@@ -5,7 +5,7 @@ import com.zhwl.ruoyi.common.core.domain.Ztree;
 import com.zhwl.ruoyi.common.core.domain.entity.SysDictData;
 import com.zhwl.ruoyi.common.core.domain.entity.SysDictType;
 import com.zhwl.ruoyi.common.core.text.Convert;
-import com.zhwl.ruoyi.common.exception.BusinessException;
+import com.zhwl.ruoyi.exception.BusinessException;
 import com.zhwl.ruoyi.common.utils.DictUtils;
 import com.zhwl.ruoyi.common.utils.StringUtils;
 import com.zhwl.ruoyi.system.mapper.SysDictDataMapper;
