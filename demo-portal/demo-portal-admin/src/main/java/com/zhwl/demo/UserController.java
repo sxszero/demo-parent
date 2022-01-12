@@ -3,7 +3,6 @@ package com.zhwl.demo;
 import com.zhwl.demo.base.AjaxResult;
 import com.zhwl.demo.po.User;
 import com.zhwl.demo.service.UserService;
-import com.zhwl.demo.utils.ShiroUtils;
 import com.zhwl.ruoyi.common.core.controller.BaseController;
 import com.zhwl.ruoyi.common.core.page.TableDataInfo;
 import com.zhwl.ruoyi.common.utils.poi.ExcelUtil;
@@ -100,17 +99,32 @@ public class UserController extends BaseController {
         return toAjax(userService.insertUser(user));
     }
 
+    /**
+     * @desc   导入用户信息
+     * @author Administrator
+     * @date 2022-01-12 14:07:30
+     * @param file
+     * @param updateSupport
+     * @return
+     **/
     @RequiresPermissions("user:import")
     @PostMapping("importUser")
     @ResponseBody
     public AjaxResult importUser(MultipartFile file,boolean updateSupport)throws Exception{
         ExcelUtil<User> util = new ExcelUtil<>(User.class);
         List<User> userList = util.importExcel(file.getInputStream());
-        String operName = ShiroUtils.getUser().getUsername();
-        String message = userService.importUser(userList, updateSupport, operName);
+        //当前的操作人员 在此处不需要添加进去
+        //String operName = ShiroUtils.getUser().getUsername();
+        String message = userService.importUser(userList, updateSupport);
         return AjaxResult.success(message);
     }
 
+    /**
+     * @desc   下载模板
+     * @author Administrator
+     * @date 2022-01-12 14:07:02
+     * @return
+     **/
     @RequiresPermissions("user:list:view")
     @GetMapping("/importTemplate")
     @ResponseBody

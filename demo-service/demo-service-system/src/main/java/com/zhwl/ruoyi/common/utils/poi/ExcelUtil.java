@@ -5,7 +5,7 @@ import com.zhwl.demo.annotation.Excels;
 import com.zhwl.demo.base.AjaxResult;
 import com.zhwl.ruoyi.common.config.RuoYiConfig;
 import com.zhwl.ruoyi.common.core.text.Convert;
-import com.zhwl.ruoyi.exception.BusinessException;
+import com.zhwl.ruoyi.common.exception.BusinessException;
 import com.zhwl.ruoyi.common.utils.DateUtils;
 import com.zhwl.ruoyi.common.utils.DictUtils;
 import com.zhwl.ruoyi.common.utils.StringUtils;

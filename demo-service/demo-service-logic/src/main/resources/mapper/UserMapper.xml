@@ -8,4 +8,8 @@
         insert into physical_user(unionid,username) values (#{unionid},#{username})
     </insert>
 
+    <select id="selectUserByUserName" resultType="com.zhwl.demo.po.User" parameterType="String">
+        select * from physical_user where username = #{username}
+    </select>
+
 </mapper>

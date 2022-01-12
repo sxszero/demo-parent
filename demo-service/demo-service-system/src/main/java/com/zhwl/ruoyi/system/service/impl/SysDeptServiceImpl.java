@@ -5,7 +5,7 @@ import com.zhwl.ruoyi.common.constant.UserConstants;
 import com.zhwl.ruoyi.common.core.domain.Ztree;
 import com.zhwl.ruoyi.common.core.domain.entity.SysDept;
 import com.zhwl.ruoyi.common.core.domain.entity.SysRole;
-import com.zhwl.ruoyi.exception.BusinessException;
+import com.zhwl.ruoyi.common.exception.BusinessException;
 import com.zhwl.ruoyi.common.utils.StringUtils;
 import com.zhwl.ruoyi.system.mapper.SysDeptMapper;
 import com.zhwl.ruoyi.system.service.ISysDeptService;

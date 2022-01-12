@@ -37,4 +37,13 @@ public interface UserMapper {
      * @return
      **/
     int insertUser(User user);
+
+    /**
+     * @desc
+     * @author Administrator
+     * @date 2022-01-12 10:35:04
+     * @param username
+     * @return
+     **/
+    User selectUserByUserName(String username);
 }

@@ -3,7 +3,7 @@ package com.zhwl.ruoyi.system.service.impl;
 import com.zhwl.ruoyi.common.constant.Constants;
 import com.zhwl.ruoyi.common.constant.UserConstants;
 import com.zhwl.ruoyi.common.core.text.Convert;
-import com.zhwl.ruoyi.exception.BusinessException;
+import com.zhwl.ruoyi.common.exception.BusinessException;
 import com.zhwl.ruoyi.common.utils.CacheUtils;
 import com.zhwl.ruoyi.common.utils.StringUtils;
 import com.zhwl.ruoyi.system.domain.SysConfig;
